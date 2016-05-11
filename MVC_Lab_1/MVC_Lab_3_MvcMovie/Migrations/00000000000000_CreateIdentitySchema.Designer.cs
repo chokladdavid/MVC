@@ -1,19 +1,23 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Migrations;
-using MVC_Lab_3_ContosoBooks.Models;
+using MVC_Lab_3_MvcMovie.Models;
 
-namespace MVC_Lab_3_ContosoBooks.Migrations
+namespace MVC_Lab_3_MvcMovie.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("00000000000000_CreateIdentitySchema")]
+    partial class CreateIdentitySchema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
+                .HasAnnotation("ProductVersion", "7.0.0-beta8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRole", b =>
@@ -46,8 +50,7 @@ namespace MVC_Lab_3_ContosoBooks.Migrations
 
                     b.Property<string>("ClaimValue");
 
-                    b.Property<string>("RoleId")
-                        .IsRequired();
+                    b.Property<string>("RoleId");
 
                     b.HasKey("Id");
 
@@ -63,8 +66,7 @@ namespace MVC_Lab_3_ContosoBooks.Migrations
 
                     b.Property<string>("ClaimValue");
 
-                    b.Property<string>("UserId")
-                        .IsRequired();
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
@@ -79,8 +81,7 @@ namespace MVC_Lab_3_ContosoBooks.Migrations
 
                     b.Property<string>("ProviderDisplayName");
 
-                    b.Property<string>("UserId")
-                        .IsRequired();
+                    b.Property<string>("UserId");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -98,7 +99,7 @@ namespace MVC_Lab_3_ContosoBooks.Migrations
                     b.HasAnnotation("Relational:TableName", "AspNetUserRoles");
                 });
 
-            modelBuilder.Entity("MVC_Lab_3_ContosoBooks.Models.ApplicationUser", b =>
+            modelBuilder.Entity("MVC_Lab_3_MvcMovie.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id");
 
@@ -146,38 +147,6 @@ namespace MVC_Lab_3_ContosoBooks.Migrations
                     b.HasAnnotation("Relational:TableName", "AspNetUsers");
                 });
 
-            modelBuilder.Entity("MVC_Lab_3_ContosoBooks.Models.Author", b =>
-                {
-                    b.Property<int>("AuthorID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<string>("LastName")
-                        .IsRequired();
-
-                    b.HasKey("AuthorID");
-                });
-
-            modelBuilder.Entity("MVC_Lab_3_ContosoBooks.Models.Book", b =>
-                {
-                    b.Property<int>("BookID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AuthorID");
-
-                    b.Property<string>("Genre");
-
-                    b.Property<decimal>("Price");
-
-                    b.Property<string>("Title")
-                        .IsRequired();
-
-                    b.Property<int>("Year");
-
-                    b.HasKey("BookID");
-                });
-
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNet.Identity.EntityFramework.IdentityRole")
@@ -187,14 +156,14 @@ namespace MVC_Lab_3_ContosoBooks.Migrations
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("MVC_Lab_3_ContosoBooks.Models.ApplicationUser")
+                    b.HasOne("MVC_Lab_3_MvcMovie.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("MVC_Lab_3_ContosoBooks.Models.ApplicationUser")
+                    b.HasOne("MVC_Lab_3_MvcMovie.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });
@@ -205,16 +174,9 @@ namespace MVC_Lab_3_ContosoBooks.Migrations
                         .WithMany()
                         .HasForeignKey("RoleId");
 
-                    b.HasOne("MVC_Lab_3_ContosoBooks.Models.ApplicationUser")
+                    b.HasOne("MVC_Lab_3_MvcMovie.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("MVC_Lab_3_ContosoBooks.Models.Book", b =>
-                {
-                    b.HasOne("MVC_Lab_3_ContosoBooks.Models.Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorID");
                 });
         }
     }
