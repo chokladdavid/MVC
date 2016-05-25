@@ -48,10 +48,14 @@
 
         <dd>
             @Ajax.ActionLink(
-           linkText: "Klick to show.",
-           actionName: "_ShowGrades",
-           routeValues: new { grades = Model.Grades },
-           ajaxOptions: new AjaxOptions() { UpdateTargetId = "GradesHolder", InsertionMode = InsertionMode.Replace })
+                linkText: "Klick to show.",
+                actionName: "_ShowGrades",
+                //routeValues: new { grades = Model.Grades },
+                ajaxOptions: new AjaxOptions()
+                {
+                    UpdateTargetId = "GradesHolder",
+                    InsertionMode = InsertionMode.Replace
+                })
             <div id="GradesHolder"></div>
         </dd>
 
@@ -60,6 +64,6 @@
 
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.StudentID }) |
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.StudentID }) |*@
     @Html.ActionLink("Back to List", "Index")
 </p>

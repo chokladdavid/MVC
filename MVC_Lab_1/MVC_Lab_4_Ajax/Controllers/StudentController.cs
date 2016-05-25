@@ -12,6 +12,13 @@ namespace MVC_Lab_4_Ajax.Controllers
         // GET: Student
         public ActionResult Index()
         {
+            if (Session["student"] == null)
+                return View();
+            return View((Student)Session["student"]);
+        }
+
+        public ActionResult PersonInitializer()
+        {
             Student student = new Student()
             {
                 StudentID = 1,
@@ -26,12 +33,32 @@ namespace MVC_Lab_4_Ajax.Controllers
                     new Grade() {ID = 3, CourseName = "Art", GradeValue = "MVG"}
                 }
             };
-            return View(student);
+            Session["student"] = student;
+            Session["grades"] = student.Grades;
+            return RedirectToAction("Index");
         }
 
-        public PartialViewResult _ShowGrades(List<Grade> grades)
+        public PartialViewResult _ShowGrades(/*List<Grade> grades*/)
         {
+            var grades = (List<Grade>)Session["grades"];
             return PartialView(viewName: "_ShowGrades", model: grades);
+        }
+        
+        public PartialViewResult _Create()
+        {
+            return PartialView();
+        }
+        public PartialViewResult _AddGrade(Grade grade)
+        {
+            if (ModelState.IsValid)
+            {
+                List<Grade> grades = (List<Grade>)Session["grades"];
+                grades.Add(grade);
+                Session["grades"] = grades;
+                return PartialView(viewName: "_ShowGrades", model: grades);
+            }
+
+            return PartialView(viewName: "_Create", model: grade);
         }
     }
 }

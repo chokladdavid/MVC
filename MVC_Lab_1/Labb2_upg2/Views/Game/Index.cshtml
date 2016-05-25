@@ -1,0 +1,30 @@
+﻿@using System.Net.Mime
+@using Labb2_upg2.Controllers
+@using Labb2_upg2.Models
+@model Labb2_upg2.Models.GameModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Crappy Tic Tac Toe</h2>
+<form action="" method="POST">
+    <table>
+
+        @for (int i = 0; i <= Tiles.TileCordinates.Count - 1; i += 3)
+        {
+            <tr>
+                @for (int y = i; y < i + 3; y++)
+                {
+                    <td>
+                        <input type="submit" class="ButtonClass" name="send" id="@Tiles.TileCordinates[y].ID" value="@Tiles.TileCordinates[y].sign"/>
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+
+    <input type="submit" name="send" value="Reset Game"/>
+</form>
+<p>@ViewBag.Message</p> 
+
+

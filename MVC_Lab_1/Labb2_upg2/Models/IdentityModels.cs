@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace MVC_Lab_4_Ajax.Models
+namespace Labb2_upg2.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
@@ -29,7 +29,5 @@ namespace MVC_Lab_4_Ajax.Models
         {
             return new ApplicationDbContext();
         }
-
-        public System.Data.Entity.DbSet<MVC_Lab_4_Ajax.Models.Grade> Grades { get; set; }
     }
 }
